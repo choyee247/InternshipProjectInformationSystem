@@ -1,7 +1,7 @@
 # Compiled code and build artifacts
 bin/
 obj/
-Migrations/
+
 # IDE-specific settings
 .vscode/
 .idea/
@@ -9,3 +9,7 @@ Migrations/
 
 # Frontend dependencies
 node_modules/
+~
+
+# Migrations folder is intentionally tracked
+Migrations/
