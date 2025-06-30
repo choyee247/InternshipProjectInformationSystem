@@ -551,6 +551,9 @@ namespace ProjectManagementSystem.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Department_pkID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -558,18 +561,13 @@ namespace ProjectManagementSystem.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Major")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NRCNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NRCTownship_pkId")
+                    b.Property<int>("NRCNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("NRCType_pkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NRC_pkId")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
@@ -580,20 +578,17 @@ namespace ProjectManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentDepartmentDepartment_pkID")
-                        .HasColumnType("int");
-
                     b.Property<string>("StudentName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Student_pkId");
 
-                    b.HasIndex("NRCTownship_pkId");
+                    b.HasIndex("Department_pkID");
 
                     b.HasIndex("NRCType_pkId");
 
-                    b.HasIndex("StudentDepartmentDepartment_pkID");
+                    b.HasIndex("NRC_pkId");
 
                     b.ToTable("Students");
                 });
@@ -756,9 +751,9 @@ namespace ProjectManagementSystem.Migrations
 
             modelBuilder.Entity("ProjectManagementSystem.Models.Student", b =>
                 {
-                    b.HasOne("ProjectManagementSystem.Models.NRCTownship", "NRCTownship")
-                        .WithMany()
-                        .HasForeignKey("NRCTownship_pkId")
+                    b.HasOne("ProjectManagementSystem.Models.StudentDepartment", "StudentDepartment")
+                        .WithMany("Students")
+                        .HasForeignKey("Department_pkID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -768,13 +763,17 @@ namespace ProjectManagementSystem.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ProjectManagementSystem.Models.StudentDepartment", null)
-                        .WithMany("Students")
-                        .HasForeignKey("StudentDepartmentDepartment_pkID");
+                    b.HasOne("ProjectManagementSystem.Models.NRCTownship", "NRCTownship")
+                        .WithMany()
+                        .HasForeignKey("NRC_pkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("NRCTownship");
 
                     b.Navigation("NRCType");
+
+                    b.Navigation("StudentDepartment");
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Models.Framework", b =>
