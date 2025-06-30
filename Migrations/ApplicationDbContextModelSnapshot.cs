@@ -398,8 +398,9 @@ namespace ProjectManagementSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Project_pkId"));
 
-                    b.Property<int>("Company_pkId")
-                        .HasColumnType("int");
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -445,8 +446,6 @@ namespace ProjectManagementSystem.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.HasKey("Project_pkId");
-
-                    b.HasIndex("Company_pkId");
 
                     b.HasIndex("Framework_pkId");
 
@@ -686,12 +685,6 @@ namespace ProjectManagementSystem.Migrations
 
             modelBuilder.Entity("ProjectManagementSystem.Models.Project", b =>
                 {
-                    b.HasOne("ProjectManagementSystem.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("Company_pkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ProjectManagementSystem.Models.Framework", "Framework")
                         .WithMany("Projects")
                         .HasForeignKey("Framework_pkId")
@@ -709,8 +702,6 @@ namespace ProjectManagementSystem.Migrations
                         .HasForeignKey("ProjectType_pkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Company");
 
                     b.Navigation("Framework");
 

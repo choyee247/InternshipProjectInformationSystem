@@ -45,10 +45,7 @@ namespace ProjectManagementSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(company);
-        }
-
-        // GET: Company/Edit/5
-        // GET: Company/Edit/5
+        }        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -60,7 +57,6 @@ namespace ProjectManagementSystem.Controllers
 
             return View(company);
         }
-
         // POST: Company/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -87,8 +83,6 @@ namespace ProjectManagementSystem.Controllers
             }
             return View(company);
         }
-
-
         // GET: Company/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

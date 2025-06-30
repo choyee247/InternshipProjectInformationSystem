@@ -126,12 +126,6 @@ namespace ProjectManagementSystem.Controllers
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction("Index", "Language"); // Redirect back to list
-        }
-
-
-        private bool LanguageExists(int id)
-        {
-            return _context.Languages.Any(e => e.Language_pkId == id);
-        }
+        }       
     }
 }
