@@ -1,0 +1,44 @@
+﻿@model ProjectManagementSystem.Models.Project
+
+@{
+    ViewData["Title"] = "Project Details";
+}
+
+<h3>Project Details</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Project Name</th>
+        <td>@Model.ProjectName</td>
+    </tr>
+    <tr>
+        <th>Supervisor</th>
+        <td>@Model.SupervisorName</td>
+    </tr>
+    <tr>
+        <th>Project Type</th>
+        <td>@Model.ProjectType?.TypeName</td>
+    </tr>
+    <tr>
+        <th>Language</th>
+        <td>@Model.Language?.LanguageName</td>
+    </tr>
+    <tr>
+        <th>Framework</th>
+        <td>@Model.Framework?.FrameworkName</td>
+    </tr>
+    <tr>
+        <th>Company</th>
+        <td>@Model.Company?.CompanyName</td>
+    </tr>
+    <tr>
+        <th>Submitted Date</th>
+        <td>@Model.ProjectSubmittedDate.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Created By</th>
+        <td>@Model.CreatedBy</td>
+    </tr>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

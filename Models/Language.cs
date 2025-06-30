@@ -10,7 +10,7 @@ namespace ProjectManagementSystem.Models
         [Required]
         public int Language_pkId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Language Name is required")]
         public string LanguageName { get; set; } = "";// e.g., C#, Java
 
         public virtual ICollection<Project> Projects { get; set; }

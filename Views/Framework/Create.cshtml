@@ -1,0 +1,29 @@
+﻿@model FrameworkCreateViewModel
+
+<h2>Create Framework</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label asp-for="SelectedLanguageId" class="form-label">Language</label>
+        <select asp-for="SelectedLanguageId" asp-items="Model.Languages" class="form-select">
+            <option value="">-- Select Language --</option>
+        </select>
+        <span asp-validation-for="SelectedLanguageId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FrameworkName" class="form-label">Framework Name</label>
+        <input asp-for="FrameworkName" class="form-control" />
+        <span asp-validation-for="FrameworkName" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

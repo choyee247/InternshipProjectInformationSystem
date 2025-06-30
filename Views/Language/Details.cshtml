@@ -1,0 +1,13 @@
+﻿@model ProjectManagementSystem.Models.Language
+
+@{
+    ViewData["Title"] = "Language Details";
+}
+
+<h3>Language Details</h3>
+
+<p><strong>ID:</strong> @Model.Language_pkId</p>
+<p><strong>Name:</strong> @Model.LanguageName</p>
+
+@* <a asp-action="Edit" asp-route-id="@Model.Language_pkId" class="btn btn-warning">Edit</a> *@
+<a asp-action="Index" class="btn btn-secondary">Back</a>

@@ -1,0 +1,63 @@
+﻿@model ProjectManagementSystem.Models.Project
+
+@{
+    ViewData["Title"] = "Edit Project";
+}
+
+<h3>Edit Project</h3>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Project_pkId" />
+
+    <div class="mb-3">
+        <label asp-for="ProjectName" class="form-label"></label>
+        <input asp-for="ProjectName" class="form-control" />
+        <span asp-validation-for="ProjectName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SupervisorName" class="form-label"></label>
+        <input asp-for="SupervisorName" class="form-control" />
+        <span asp-validation-for="SupervisorName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProjectType_pkId" class="form-label">Project Type</label>
+        <select asp-for="ProjectType_pkId" class="form-select" asp-items="ViewBag.ProjectTypeId"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Language_pkId" class="form-label">Language</label>
+        <select asp-for="Language_pkId" class="form-select" asp-items="ViewBag.LanguageId"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Framework_pkId" class="form-label">Framework</label>
+        <select asp-for="Framework_pkId" class="form-select" asp-items="ViewBag.FrameworkId"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Company_pkId" class="form-label">Company</label>
+        <select asp-for="Company_pkId" class="form-select" asp-items="ViewBag.CompanyId"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProjectSubmittedDate" class="form-label"></label>
+        <input asp-for="ProjectSubmittedDate" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CreatedBy" class="form-label"></label>
+        <input asp-for="CreatedBy" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

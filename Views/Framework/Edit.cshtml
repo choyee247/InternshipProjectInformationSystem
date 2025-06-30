@@ -1,0 +1,34 @@
+﻿@model FrameworkCreateViewModel
+@{
+    ViewData["Title"] = "Edit Framework";
+    var frameworkId = ViewBag.FrameworkId;
+}
+
+<h2>Edit Framework</h2>
+
+<form asp-action="Edit" method="post" asp-route-id="@frameworkId">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="mb-3">
+        <label asp-for="SelectedLanguageId" class="form-label"></label>
+        <select asp-for="SelectedLanguageId" asp-items="Model.Languages" class="form-select">
+            <option value="">-- Select Language --</option>
+        </select>
+        <span asp-validation-for="SelectedLanguageId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FrameworkName" class="form-label"></label>
+        <input asp-for="FrameworkName" class="form-control" />
+        <span asp-validation-for="FrameworkName" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

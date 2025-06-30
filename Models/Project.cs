@@ -30,9 +30,8 @@ namespace ProjectManagementSystem.Models
 
         [ForeignKey(nameof(Framework))]
         public int Framework_pkId { get; set; }
-
-
-        public string CompanyName { get; set; } = "";
+        [ForeignKey(nameof(Company))]
+        public int Company_pkId { get; set; }      
 
         public DateTime ProjectSubmittedDate { get; set; } = DateTime.Now;
 
@@ -45,7 +44,7 @@ namespace ProjectManagementSystem.Models
         [Required(ErrorMessage = "Creator name is required")]
         [StringLength(100, ErrorMessage = "Creator name cannot exceed 100 characters")]
         public string CreatedBy { get; set; } = "";
-
+        public virtual Company Company { get; set; }
         public virtual ProjectType ProjectType { get; set; }
         public virtual Language Language { get; set; }
         public virtual Framework Framework { get; set; }

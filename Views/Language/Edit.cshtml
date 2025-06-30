@@ -1,0 +1,31 @@
+﻿@model ProjectManagementSystem.Models.Language
+
+@{
+    ViewData["Title"] = "Edit Language";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Display model validation errors (if any) -->
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
+    <!-- Hidden field for primary key -->
+    <input type="hidden" asp-for="Language_pkId" />
+
+    <div class="form-group">
+        <label asp-for="LanguageName" class="form-label"></label>
+        <input asp-for="LanguageName" class="form-control" />
+        <span asp-validation-for="LanguageName" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <!-- Required for client-side validation -->
+    <partial name="_ValidationScriptsPartial" />
+}
