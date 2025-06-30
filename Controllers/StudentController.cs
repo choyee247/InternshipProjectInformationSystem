@@ -43,7 +43,7 @@ namespace ProjectManagementSystem.Controllers
 
                 _context.Add(model.Student);
                 await _context.SaveChangesAsync();
-
+                TempData["SuccessMessage"] = "Student created successfully!";
                 // Changed from RedirectToAction(nameof(Index))
                 return RedirectToAction("Dashboard", "Student");
             }
