@@ -27,9 +27,18 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<NRCTownship> NRCTownships { get; set; }
     public DbSet<NRCType> NRCTypes { get; set; }
 
+    public DbSet<InternCom> InternComs { get; set; }
+
+    public DbSet<Email> Emails { get; set; }
+
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Email>()
+       .HasKey(e => e.Email_PkId);
         base.OnModelCreating(modelBuilder);
+
 
         // Configure composite key for ProjectMember
         modelBuilder.Entity<ProjectMember>()
@@ -74,7 +83,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         modelBuilder.Entity<ProjectMember>().HasKey(pm => new { pm.Project_pkId, pm.Student_pkId });
 
-     
+        modelBuilder.Entity<InternCom>().ToTable("InternCom");
+
+        base.OnModelCreating(modelBuilder);
 
 
     }
