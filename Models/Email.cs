@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using ProjectManagementSystem;
+using ProjectManagementSystem.Models;
 public class Email
 {
     [Key]
@@ -8,4 +10,9 @@ public class Email
     public string Class { get; set; }
     public bool IsDeleted { get; set; }
     public DateTimeOffset CreatedDate { get; set; }
+
+    [Required]
+    public string RollNumber { get; set; }
+
+
 }

@@ -31,22 +31,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<Email> Emails { get; set; }
 
-
+    public DbSet<OTP> OTPs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Email>()
-       .HasKey(e => e.Email_PkId);
-        base.OnModelCreating(modelBuilder);
-
-
+      
         // Configure composite key for ProjectMember
         modelBuilder.Entity<ProjectMember>()
             .HasKey(pm => new { pm.Project_pkId, pm.Student_pkId });
 
         // Configure relationships
       
-
         modelBuilder.Entity<Student>()
             .HasOne(s => s.NRCType)
             .WithMany()
@@ -79,14 +74,23 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .HasForeignKey(f => f.Language_pkId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        
-
         modelBuilder.Entity<ProjectMember>().HasKey(pm => new { pm.Project_pkId, pm.Student_pkId });
 
         modelBuilder.Entity<InternCom>().ToTable("InternCom");
 
         base.OnModelCreating(modelBuilder);
 
+       // modelBuilder.Entity<OTP>()
+       //.HasOne(o => o.Student)
+       //.WithMany(s => s.OTPs)
+       //.HasForeignKey(o => o.Student_pkId)
+       //.OnDelete(DeleteBehavior.Cascade);
+
+        //modelBuilder.Entity<Email>()
+        //.HasOne(e => e.Student)
+        //.WithMany(s => s.Emails)
+        //.HasForeignKey(e => e.Student_pkId)
+        //.HasPrincipalKey(s => s.Student_pkId);
 
     }
 }
